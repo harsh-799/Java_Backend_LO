@@ -8,7 +8,7 @@ class BasicsStructureTest { // 📢 Also It's naming convention that, Test class
 
     @Test // 💡 We must add @TestAnnotation to let platform know that this method is part of unit Testing
     void methodToTest() {
-        System.out.println("Passed"); // ⚠️ NOTE: By default every Test is passed so we need to explictly write the edge Cases on which our Defined loginc in BasicsStructure will fail.
+        System.out.println("Passed"); // ⚠️ NOTE: By default every Test is passed so we need to explictly write the edge Cases on which our Defined logic in BasicsStructure will fail.
     }
 
     void methodGoingToBeSkipped(){
