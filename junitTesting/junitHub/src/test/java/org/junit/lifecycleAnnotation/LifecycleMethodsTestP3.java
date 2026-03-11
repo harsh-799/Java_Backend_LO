@@ -5,7 +5,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
-@TestInstance(TestInstance.Lifecycle.PER_METHOD) // Using this, Instance of the class will be created for every method so see no need of @BeforeEach in this case too.
+// @TestInstance(TestInstance.Lifecycle.PER_METHOD) // Using this, Instance of the class will be created for every method so see no need of @BeforeEach in this case too.
 @TestInstance(TestInstance.Lifecycle.PER_CLASS) // Using this, Instance of class will be created only one Time.
 public class LifecycleMethodsTestP3 {
 
