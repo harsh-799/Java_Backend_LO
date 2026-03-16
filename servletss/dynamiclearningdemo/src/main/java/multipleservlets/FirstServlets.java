@@ -26,7 +26,7 @@ public class FirstServlets extends HttpServlet {
         // Having two ways to dispatch b/w two Servlets:
 
         // Way01: forward()
-        dispatcher.forward(req, resp);
+        // dispatcher.forward(req, resp);
 
         /* ✅ OUTPUT:
         ON SCREEN: Response coming from Servlet 2
@@ -44,7 +44,18 @@ public class FirstServlets extends HttpServlet {
          */
 
         // Way02: include()
+        dispatcher.include(req, resp);
 
+        System.out.println("Came back to First Servlets");
+        writer.println("<h1>Came back to First Servlets</h1>");
 
+        /*
+        ✅ OUTPUT:
+        Response coming from First Servlets
+        Response coming from Servlet 2
+        Came back to First Servlets
+
+        In this flow is as we defined and when it goes to the another servlets it's sure that it'll comee back to the called servlet.
+         */
     }
 }
