@@ -15,6 +15,9 @@
     </properties>
 
     <packaging>war</packaging>
+    <build>
+        <finalName>dynamiclearningdemo</finalName>
+    </build>
 
     <dependencies>
 
