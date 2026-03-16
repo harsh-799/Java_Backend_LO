@@ -39,7 +39,20 @@ public class FormServlets extends HttpServlet {
         } else {
             writer.println("<h1 style='color: red'>Bada hoo ja pahele</h1>");
         }
+    }
 
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String name = req.getParameter("name");
+        String city = req.getParameter("city");
+        String ageStr = req.getParameter("age"); // ⚠️ Even though age is number in Html use getParamter() everything is converted to string.
 
+        Integer age = Integer.parseInt(ageStr);
+
+        System.out.println(name + " " + city + " " + age);
+
+        // For sending it to diff HTML instead of writing HTML stuffs here we use redirect()
+
+        resp.sendRedirect("response.html"); // But suppose if we want to send some data into sendRedirect() file that's not possible at all so for that we need to learn JSP
     }
 }
