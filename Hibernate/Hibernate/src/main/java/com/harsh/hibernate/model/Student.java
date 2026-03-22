@@ -14,6 +14,7 @@ public class Student {
 
     // 🔒 We need one default constructor for hibernate..
     public Student(){
+        System.out.println("Constructor is called");
     }
 
     public int getsId() {
