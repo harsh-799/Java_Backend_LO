@@ -1,11 +1,17 @@
 package com.harsh.hibernate.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
+import javax.persistence.Cacheable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity // 🚢 The Class which needs to be mapped must be declared with the @Entity Annotation.
 @Table(name = "students_table") // 🧵 We can change the table Name in DB using @Table(name = "") if we don't provide that it'll keep the table name same as className.
+@Cacheable // 🏷️ Must be defined so that for Hibernate can know that this class supports caching stuffs in better words (enables L2 cache for this entity)
+@Cache(usage = CacheConcurrencyStrategy.READ_ONLY) // 🏷️ The Cache type is only for read (defines caching behavior (read-only, read-write, etc.))
 public class Student {
     @Id // 🔦 We use @Id annotation to mark the field which will be PK in the table.
     private int sId;
