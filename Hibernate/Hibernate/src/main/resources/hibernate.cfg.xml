@@ -27,15 +27,9 @@
         <!-- Format SQL Queries x`-->
         <property name="hibernate.format_sql">true</property>
 
-        <!-- L2 Caching (Ehcaching) -->
-        <property name="hibernate.cache.use_second_level_cache">true</property>
-
-        <property name="hibernate.cache.region.factory_class">
-            org.hibernate.cache.ehcache.EhCacheRegionFactory
-        </property>
-
         <!-- Mapping class -->
         <mapping class="com.harsh.hibernate.model.Student"/>
+
 
     </session-factory>
 </hibernate-configuration>
