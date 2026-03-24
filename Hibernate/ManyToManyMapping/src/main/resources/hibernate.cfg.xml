@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+
+        <!-- Basic DB information -->
+        <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/hibernate_learning</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">ideapad</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</property>
+
+        <!-- Show SQL -->
+        <property name="hibernate.show_sql">true</property>
+
+        <!-- Auto table creation -->
+        <property name="hibernate.hbm2ddl.auto">create</property>
+
+        <!-- We have two ways here
+        1. create (This will drop the table if Present and add the New Records)
+        2. update (this will not drop the table and keep the old records as it's and add the new records
+        -->
+
+        <!-- Format SQL Queries x`-->
+        <property name="hibernate.format_sql">true</property>
+
+        <!-- Mapping class -->
+        <mapping class="com.harsh.hibernate.mtm.model.ProjectMTM"/>
+        <mapping class="com.harsh.hibernate.mtm.model.EmployeeMTM" />
+
+
+    </session-factory>
+</hibernate-configuration>
