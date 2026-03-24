@@ -2,6 +2,7 @@ package com.harsh.hibernate.oto.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 
 @Entity
@@ -11,6 +12,7 @@ public class Employee {
     String empName;
 
     @OneToOne
+    @JoinColumn(name = "project_id")
     Project project;
 
     public int getEmpId() {

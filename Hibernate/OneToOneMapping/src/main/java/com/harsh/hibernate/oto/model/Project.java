@@ -15,8 +15,14 @@ public class Project {
     int pid;
     String projectName;
 
-    @OneToOne
+    @OneToOne(mappedBy = "project") // 🧨 mappedBy means Don’t create FK here, it already exists on the other side. 👉 mappedBy is used to avoid duplicate foreign keys by marking one side as non-owner
     Employee employee;
+
+    /*
+    🎯 Final memory trick
+    No mappedBy → 2 owners → 2 FK ❌
+    With mappedBy → 1 owner → 1 FK ✅
+     */
 
     public int getPid() {
         return pid;
