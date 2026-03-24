@@ -1,6 +1,7 @@
 package com.harsh.hibernate.mtm.model;
 
 import jakarta.persistence.*;
+import org.hibernate.engine.internal.Cascade;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +20,7 @@ public class EmployeeMTM {
     String empName;
 
     // Now since one Employee will have many projects, so for storing the Projects we need collection.
-    @ManyToMany()
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
             name = "emp_project_relation",
             joinColumns = @JoinColumn(name = "emp_id"), // For Renaming the column in which all the employee FK will be stored and it belongs to employee (this) table.
