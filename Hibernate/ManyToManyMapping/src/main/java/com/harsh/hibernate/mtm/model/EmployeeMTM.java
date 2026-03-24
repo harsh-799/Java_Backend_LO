@@ -2,6 +2,7 @@ package com.harsh.hibernate.mtm.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /*
@@ -22,9 +23,10 @@ public class EmployeeMTM {
     @JoinTable(
             name = "emp_project_relation",
             joinColumns = @JoinColumn(name = "emp_id"), // For Renaming the column in which all the employee FK will be stored and it belongs to employee (this) table.
-            inverseJoinColumns = @JoinColumn(name = "project_id") // renames the column in which all the project FK will be stored and it's name is described using @JoinColumn
+            inverseJoinColumns = @JoinColumn(name = "project_id"), // renames the column in which all the project FK will be stored and it's name is described using @JoinColumn
+            uniqueConstraints = @UniqueConstraint(columnNames = {"emp_id", "project_id"})
     )
-    List<ProjectMTM> projectListForEmployee;
+    List<ProjectMTM> projectListForEmployee = new ArrayList<>();
 
     public List<ProjectMTM> getProjectListForEmployee() {
         return projectListForEmployee;
@@ -48,5 +50,12 @@ public class EmployeeMTM {
 
     public void setEmpName(String empName) {
         this.empName = empName;
+    }
+
+    // Helper methods
+    public void addProjects(ProjectMTM project) {
+        projectListForEmployee.add(project); // Added projects here in the projectListForEmployee collections
+        project.getEmployeeForThisProject().add(this); // added curr Emp obj to Project class which is having collN where we storing EMp using that current Instance project.
+
     }
 }

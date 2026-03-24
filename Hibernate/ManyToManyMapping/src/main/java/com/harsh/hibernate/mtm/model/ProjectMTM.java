@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -15,7 +16,7 @@ public class ProjectMTM {
     // Earlier one project was linked to one person so we used simple object, but now one project can be linked to many employee so we need a collections.
 
     @ManyToMany(mappedBy = "projectListForEmployee")
-    List<EmployeeMTM> employeeForThisProject;
+    List<EmployeeMTM> employeeForThisProject = new ArrayList<>();
 
     public List<EmployeeMTM> getEmployeeForThisProject() {
         return employeeForThisProject;
@@ -39,5 +40,11 @@ public class ProjectMTM {
 
     public void setProjectName(String projectName) {
         this.projectName = projectName;
+    }
+
+    // Helper methods
+    public void addEmployee(EmployeeMTM emp) {
+        employeeForThisProject.add(emp);
+        emp.getProjectListForEmployee().add(this); // saving in the list of projects of emp instance from here
     }
 }

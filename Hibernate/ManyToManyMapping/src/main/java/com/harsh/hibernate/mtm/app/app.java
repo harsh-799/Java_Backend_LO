@@ -40,22 +40,20 @@ public class app {
             project2.setProjectName("PHP");
 
             // 🏷️ List of Projects for emp1
-            List<ProjectMTM> emp1Projects = new ArrayList<>();
-            emp1Projects.add(project1);
-            emp1Projects.add(project2);
+            emp1.addProjects(project1);
+            emp1.addProjects(project2);
 
             // 🏷️ Till now we have achieved one person can do many projects (Saving list of projects for Emp 1)
-            emp1.setProjectListForEmployee(emp1Projects);
+
 
             // 🏷️ Now how project will now that i am connected to which employee so for specfic projects we need to create specific collN which contains which emp is using this project
-            List<EmployeeMTM> listOfEmployeesOnThisProject = new ArrayList<>();
-            listOfEmployeesOnThisProject.add(emp1);
+            // Better Way of writing this implementation is:
+            // project1.addEmployee(emp1);
+            // project2.addEmployee(emp1);
 
-            List<EmployeeMTM> listOfEmployeesOnThisProject2 = new ArrayList<>();
-            listOfEmployeesOnThisProject2.add(emp1);
+            // These both not needed think why??
 
-            project1.setEmployeeForThisProject(listOfEmployeesOnThisProject);
-            project2.setEmployeeForThisProject(listOfEmployeesOnThisProject2);
+            // Because in the helper method of the emp we have set the emp for specific project in last line so doing this here makes it duplicate entry in the join table so ERROR: Duplicate entry '500-300'
 
             session.persist(project1);
             session.persist(project2);
