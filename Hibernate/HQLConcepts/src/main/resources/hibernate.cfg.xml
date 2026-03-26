@@ -17,7 +17,7 @@
         <property name="hibernate.show_sql">true</property>
 
         <!-- Auto table creation -->
-        <property name="hibernate.hbm2ddl.auto">create</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
 
         <!-- We have two ways here
         1. create (This will drop the table if Present and add the New Records)
