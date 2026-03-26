@@ -85,8 +85,84 @@ public class DeletingTheData {
             if (session != null) session.close();
         }
     }
+
+    // I have re-inserted the data before proceeding further.
+    /*
+    🧠 Strategy (VERY IMPORTANT)
+
+    👉 Since HQL does NOT apply cascade, we do:
+
+    Step 1: Delete child
+    Step 2: Delete parent
+
+    Now we can do it using two ways here:
+    either do it using subquery
+    do it using Storing the ID which needs to be deleted in a list and delete them first from child and then parent
+     */
+
+    public static void seeingWay2() {
+        Session session = null;
+        Transaction transaction = null;
+
+        try {
+            session = factory.openSession();
+            transaction = session.beginTransaction();
+
+            List<Integer> idsOfEmployeeGoingToBeRemoved = session.createQuery("SELECT e.empId FROM AccentureEmployee e WHERE e.city = :employeeCity", Integer.class).setParameter("employeeCity","pune").list();
+
+            if (idsOfEmployeeGoingToBeRemoved.isEmpty()) {
+                System.out.println("No employee found");
+                transaction.rollback();
+                return;
+            }
+
+            // Till now we got the ID's of all employee who needs to be deleted.
+
+            // FIrst we'll delete it from CHild
+            Query query = session.createQuery("DELETE FROM EmployeeCred ec WHERE ec.employee.empId IN (:empRemovingIDList)").setParameter("empRemovingIDList",idsOfEmployeeGoingToBeRemoved); // THis is 🔥 Damn important how i am accessing the ID from cred table
+
+            int rowsAffectedInCHild = query.executeUpdate();
+
+            // Second we'll delete
+            Query query1 = session.createQuery("DELETE FROM AccentureEmployee WHERE empId IN (:empRemovingList)").setParameter("empRemovingList",idsOfEmployeeGoingToBeRemoved);
+
+            int rowsAffectedInParent = query1.executeUpdate();
+
+            if (rowsAffectedInCHild == 0 && rowsAffectedInParent == 0) {
+                System.out.println("No EMployee found from Pune");
+                transaction.rollback();
+                return;
+            }
+
+            if (rowsAffectedInCHild != rowsAffectedInParent) {
+                System.out.println("Some Data inconsistency, exiting the program");
+                transaction.rollback();
+                return;
+            }
+
+            System.out.println(idsOfEmployeeGoingToBeRemoved.size() + " deleted.");
+            transaction.commit();
+
+        } catch (Exception e) {
+            if (transaction != null) transaction.rollback();
+            e.printStackTrace();
+        } finally {
+            if (session != null) session.close();
+        }
+    }
+
+    /*
+    🧠 When to use this approach
+    | Situation            | Use                      |
+| -------------------- | ------------------------ |
+| Few records          | Loop + `remove()`        |
+| Many records         | Bulk delete ✅ |
+| Performance critical | Bulk delete ✅            |
+
+     */
     public static void main(String[] args) {
-        // deletingEmployee();
+        deletingEmployee();
         seeingWay1();
+        seeingWay2();
     }
 }
