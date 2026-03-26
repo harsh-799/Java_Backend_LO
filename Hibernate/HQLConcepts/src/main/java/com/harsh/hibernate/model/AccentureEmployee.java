@@ -9,6 +9,7 @@ public class AccentureEmployee {
     int empId;
     String empName;
     String city;
+    int salary;
 
     @OneToOne(mappedBy = "employee", cascade = CascadeType.ALL)
     EmployeeCred myCredentials;
@@ -39,6 +40,14 @@ public class AccentureEmployee {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public int getSalary() {
+        return salary;
+    }
+
+    public void setSalary(int salary) {
+        this.salary = salary;
     }
 
 }
