@@ -62,13 +62,14 @@ public class DeletingTheData {
             session = factory.openSession();
             transaction = session.beginTransaction();
 
-            Query query = session.createQuery("FROM AccentureEmployee WHERE city = :empCity").setParameter("empCity","Pune");
+            Query<AccentureEmployee> query = session.createQuery("FROM AccentureEmployee WHERE city = :empCity", AccentureEmployee.class).setParameter("empCity","Pune");
 
             List<AccentureEmployee> employeeGoingToBeRemoved = query.list();
 
             if (employeeGoingToBeRemoved.isEmpty()) {
                 System.out.println("No Employee Found in the city Pune");
-                return;
+                transaction.rollback();
+                return; // DW about session because finally executes before returning so session will be closed automatically.
             }
 
             for (AccentureEmployee emp : employeeGoingToBeRemoved) {
