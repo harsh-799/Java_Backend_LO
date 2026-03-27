@@ -65,9 +65,51 @@ public class BasicsOfApplicationContext {
          */
     }
 
+    public static void beanScopePrototype() {
+        /*
+        🔹 2. Prototype
+        👉 Every time → NEW object
+         */
+        ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
+
+        // ✅ Car object is created.. ( 🧱 See only class object is created not the Engine becuse we marked it scope as prototype
+
+        // Till above it's diff Now we're showing Part2
+
+        // Now suppose it as Part 2
+        Engine engine = (Engine) context.getBean("engine");
+        Engine engine1 = (Engine) context.getBean("engine");
+
+        /*
+        ✅ Car object is created..
+        ✅ Engine Object created.
+        ✅ Engine Object created.
+
+        📞 See Here the engine object is created two times even with the same Id because it's scope is marked as Prototype
+        For more clear see below
+         */
+
+        engine.setEngineName("BMW Engine");
+        System.out.println(engine.getEngineName()); // ✅ BMW Engine
+        System.out.println(engine1.getEngineName()); // ✅ null
+
+        // 🧰 So it's confirmed that for other other reference other other object is created not single object.
+
+        // 🏞️ By default, the scope is set as Singleton
+
+        /*
+        | Scope     | Objects Created | Default? |
+        | --------- | --------------- | -------- |
+        | Singleton | One             | ✅ Yes    |
+        | Prototype | Multiple        | ❌ No     |
+
+         */
+    }
+
     public static void main(String[] args) {
         // creatingApplicationContext(); 📌 See we' have commented it
         // seeingWhenObjectIsCreatedByContainer();
         // beanScopeSingleton();
+        beanScopePrototype();
     }
 }
