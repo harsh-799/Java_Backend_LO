@@ -6,7 +6,7 @@
 
     <!-- bean definitions here -->
     <bean id="carkiid" class="com.harsh.springcore.basics.model.Car"> </bean>
-    <bean id="engine" class="com.harsh.springcore.basics.model.Engine"> </bean>
+    <bean id="carkiid1" class="com.harsh.springcore.basics.model.Car"> </bean>
 
     <!-- Note that: Here id is optional to give    -->
 
