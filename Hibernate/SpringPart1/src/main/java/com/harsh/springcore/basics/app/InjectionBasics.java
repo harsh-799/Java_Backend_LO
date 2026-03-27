@@ -58,8 +58,36 @@ public class InjectionBasics {
         - Then it calls the setter method📏
          */
     }
+
+    public static void injectingValueUsingConstructor() {
+        ApplicationContext context = new ClassPathXmlApplicationContext("beans2.xml");
+
+        Engine eng1 = (Engine) context.getBean("EngineC1");
+        System.out.println(eng1.getEngineName()); // ✅ Hero Motors
+        System.out.println(eng1.getHp()); // ✅ 3
+
+        Engine eng2 = (Engine) context.getBean("EngineC2");
+        System.out.println(eng2.getEngineName()); // ✅ Ghoda Gaadi
+        System.out.println(eng2.getHp()); // ✅ 1000
+
+        Engine eng3 = (Engine) context.getBean("EngineC3");
+        System.out.println(eng3.getEngineName()); // ✅ Honda Motors
+        System.out.println(eng3.getHp()); // ✅ 2000
+
+        /* ✅ OUTPUT
+        Engine Para constructor called
+        Engine Para constructor called
+        Engine Para constructor called
+        Honda Motors
+        2000
+
+        💾 SEE NO WHERE setter is getting called because using constructor injection setter is not called it directly gets injected at the time of object creation only
+         */
+
+    }
     public static void main(String[] args) {
         // injectingValue();
-        injectingReference();
+        // injectingReference();
+        injectingValueUsingConstructor();
     }
 }
