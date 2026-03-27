@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <!--
+    📘 Constructor Injection → WHEN DOES WHAT FAIL?
+    You have 3 ways:
+
+    type
+    name
+    index -->
+    <bean id="EngineC1" class="com.harsh.springcore.basics.model.Engine">
+    <!-- Way 01 (Using type="Data Type" value="" -->
+        <constructor-arg type="int" value="3" />
+        <constructor-arg type="String" value="Hero Motors" />
+    <!-- ❌ FAILS when: type is same spring confuse which value belongs to which type then it follows sequence -->
+    </bean>
+
+
+    <!-- Way 02 (Using name="")  -->
+    <bean id="EngineC2" class="com.harsh.springcore.basics.model.Engine">
+        <constructor-arg name="engineName" value="Ghoda Gaadi"/>
+        <constructor-arg name="hp" value="1000"/>
+        <!-- ❌ FAILS when: ❌ Spring cannot find matching parameter -->
+    </bean>
+
+
+    <!-- Way 03 (Using index (BEST WAY))  -->
+    <bean id="EngineC3" class="com.harsh.springcore.basics.model.Engine">
+        <constructor-arg index="1" value="2000"/>
+        <constructor-arg index="0" value="Honda Motors"/>
+        <!-- ❌ FAILS when: ❌ No such position in constructor -->
+    </bean>
+
+
+    <!--
+
+      | Method | Order Matters? | When it Fails             |
+                                                           |
+      | type   | ❌ No           | Same data types present |
+      | name   | ❌ No           | Wrong parameter name    |
+      | index  | ❌ No           | Wrong index             |
+
+      -->
+</beans>
