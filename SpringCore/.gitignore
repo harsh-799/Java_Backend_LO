@@ -1,0 +1,54 @@
+# ===============================
+# IntelliJ IDEA
+# ===============================
+.idea/
+*.iml
+*.iws
+out/
+
+# ===============================
+# Java / Maven / Gradle
+# ===============================
+target/
+build/
+.gradle/
+!gradle/wrapper/gradle-wrapper.jar
+
+# ===============================
+# Logs
+# ===============================
+*.log
+
+# ===============================
+# OS Files
+# ===============================
+.DS_Store
+Thumbs.db
+
+# ===============================
+# Environment files
+# ===============================
+.env
+
+# ===============================
+# Spring Boot
+# ===============================
+application.properties
+application.yml
+
+# (Optional: only ignore if containing secrets)
+# Otherwise you can commit them
+
+# ===============================
+# Compiled files
+# ===============================
+*.class
+*.jar
+*.war
+*.ear
+
+# ===============================
+# Temporary files
+# ===============================
+*.tmp
+*.swp
