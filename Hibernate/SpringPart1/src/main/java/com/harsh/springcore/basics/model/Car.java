@@ -6,7 +6,7 @@ public class Car {
     int price;
 
     public Car() {
-
+        System.out.println("Car object is created..");
     }
 
     public String getBrandName() {
