@@ -1,5 +1,6 @@
 package com.harsh.springcore.basics.app;
 
+import com.harsh.springcore.basics.model.Car;
 import com.harsh.springcore.basics.model.Engine;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -32,7 +33,33 @@ public class InjectionBasics {
         Means this injecting value internally calls the setter taht's why setter is getting called.
          */
     }
+
+    public static void injectingReference() {
+        ApplicationContext context = new ClassPathXmlApplicationContext("beans1.xml");
+
+        // before Ref part
+        Car car = (Car) context.getBean("carId1");
+        System.out.println(car.getEngine()); // null
+
+        // Now Reference part starts
+        car.getEngine().setEngineName("Holland Tractors"); // If no NULL ptr exception means engine ref is assigned
+        System.out.println(car.getEngine().getEngineName()); // Holland Tractors
+
+        /*
+        ✅ FULL OUTPUT
+        Engine Object created.
+        Car object is created..
+        Engine{engineName='null'}  // 🌙 Don't confuse about this this coming because after ref is setted for our logic consider this line as null
+        📏 Engine Setter Called
+        Holland Tractors
+
+        So for Setting the value using property:
+        - First it creates the object
+        - Then it calls the setter method📏
+         */
+    }
     public static void main(String[] args) {
-        injectingValue();
+        // injectingValue();
+        injectingReference();
     }
 }
