@@ -5,6 +5,8 @@ public class Car {
     String brandName;
     int price;
 
+    Engine engine;
+
     public Car() {
         System.out.println("Car object is created..");
     }
@@ -23,6 +25,14 @@ public class Car {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public Engine getEngine() {
+        return engine;
+    }
+
+    public void setEngine(Engine engine) {
+        this.engine = engine;
     }
 
     @Override

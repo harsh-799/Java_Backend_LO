@@ -4,11 +4,17 @@
        xsi:schemaLocation="
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="engine1" class="com.harsh.springcore.basics.model.Engine">
-        <property name="engineName" value="BMW Motors"/> <!-- name should be same as property name defined in class -->
-    </bean>
-    <bean id="engine2" class="com.harsh.springcore.basics.model.Engine">
-        <property name="engineName" value="JCB Automotive"/>
+<!--    <bean id="engine1" class="com.harsh.springcore.basics.model.Engine">-->
+<!--        <property name="engineName" value="BMW Motors"/> &lt;!&ndash; name should be same as property name defined in class &ndash;&gt;-->
+<!--    </bean>-->
+<!--    <bean id="engine2" class="com.harsh.springcore.basics.model.Engine">-->
+<!--        <property name="engineName" value="JCB Automotive"/>-->
+<!--    </bean>-->
+
+    <bean id="engineKiId" class="com.harsh.springcore.basics.model.Engine" />
+
+    <bean id="carId1" class="com.harsh.springcore.basics.model.Car">
+        <property name="engine" ref="engineKiId" /> <!-- Note: Engine bean should be created then only it'll be refer-->
     </bean>
 
 </beans>
