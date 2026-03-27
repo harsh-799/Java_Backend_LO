@@ -11,6 +11,12 @@ public class Car {
         System.out.println("Car object is created..");
     }
 
+    public Car(String brandName, int price, Engine engine) {
+        this.brandName = brandName;
+        this.price = price;
+        this.engine = engine;
+    }
+
     public String getBrandName() {
         return brandName;
     }
@@ -40,6 +46,7 @@ public class Car {
         return "Car{" +
                 "brandName='" + brandName + '\'' +
                 ", price=" + price +
+                ", engine=" + engine +
                 '}';
     }
 }

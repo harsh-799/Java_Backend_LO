@@ -45,4 +45,16 @@
       | index  | ❌ No           | Wrong index             |
 
       -->
+
+    <bean id="engPassHoga" class="com.harsh.springcore.basics.model.Engine">
+        <property name="engineName" value="Toyota Ka Engine" />
+    </bean>
+
+    <bean id="CarConst1" class="com.harsh.springcore.basics.model.Car">
+        <constructor-arg name="brandName" value="Toyota" />
+        <constructor-arg name="price" value="45" />
+        <constructor-arg name="engine" ref="engPassHoga" />
+
+<!--        If multiple Parameter needed then do same stuffs either use index or name -->
+    </bean>
 </beans>

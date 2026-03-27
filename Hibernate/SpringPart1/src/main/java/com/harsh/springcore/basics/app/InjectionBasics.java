@@ -85,9 +85,18 @@ public class InjectionBasics {
          */
 
     }
+
+    public static void injectingRefUsingConstructor() {
+        ApplicationContext context = new ClassPathXmlApplicationContext("beans2.xml");
+
+        Car car1 = (Car) context.getBean("CarConst1");
+        System.out.println(car1); // ✅ Car{brandName='Toyota', price=45, engine=Engine{engineName='Toyota Ka Engine'}}
+
+    }
     public static void main(String[] args) {
         // injectingValue();
         // injectingReference();
-        injectingValueUsingConstructor();
+        // injectingValueUsingConstructor();
+        injectingRefUsingConstructor();
     }
 }
