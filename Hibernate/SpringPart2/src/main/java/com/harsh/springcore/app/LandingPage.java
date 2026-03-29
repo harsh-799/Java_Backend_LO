@@ -19,7 +19,22 @@ public class LandingPage {
        */
     }
 
+    public static void earlierWayUsingConstructor() {
+       ApplicationContext context = new ClassPathXmlApplicationContext("beans1.xml");
+       Student student1 = (Student) context.getBean("student1");
+       student1.purchaseCourse(3000);
+
+       /* 🗂️ OUTPUT
+       * SpringBoot bean is created
+       * Injected inside Student bean
+       * SpringBoot course is purchased at 3000
+       * Transaction Success
+        */
+
+    }
+
     public static void main(String[] args) {
-        earlierWayUsingProperty();
+        // earlierWayUsingProperty();
+        earlierWayUsingConstructor();
     }
 }

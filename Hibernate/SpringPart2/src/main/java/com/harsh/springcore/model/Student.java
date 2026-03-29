@@ -7,6 +7,13 @@ public class Student {
         System.out.println("Student bean is created");
     }
 
+    public Student(Courses courses) {
+        System.out.println("Injected inside Student bean");
+        this.courses = courses;
+    }
+
+    // Remember no use of setter in this case beacuse we'll be using COnstructor injection.
+
     public Courses getCourses() {
         return courses;
     }

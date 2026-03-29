@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="springBootCourseC" class="com.harsh.springcore.model.SpringBootCourse" />
+
+    <bean id="student1" class="com.harsh.springcore.model.Student">
+        <constructor-arg ref="springBootCourseC" />
+    </bean>
+
+    <!-- 🔒 Now in the both cases setter injection and constructor injection the issue is we need to manually link the property -> ref (both in setter or constrcutor). Now the workaround of is this is Autowiring-->
+
+
+</beans>
