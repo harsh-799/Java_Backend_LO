@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="javacourseP" class="com.harsh.springcore.model.JavaCourse" />
+
+    <bean id="student0" class="com.harsh.springcore.model.Student">
+        <property name="courses" ref="javacourseP" />
+        <!-- 🌍 Remember if we setting via the Property then it sets using the setter so we must have setter within the class.
+        -->
+    </bean>
+
+
+</beans>
