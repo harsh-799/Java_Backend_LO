@@ -45,10 +45,26 @@ public class LandingPage2 {
         Student student2 = context.getBean(Student.class);
         // it'll go to the XML file and look for the bean which belngs to the Student.class make sure you have single bean otherwise Ambiguity case.
     }
+
+    public static void innerBean() {
+        ApplicationContext context = new ClassPathXmlApplicationContext("beans3.xml");
+
+        Student student3 = context.getBean("stud", Student.class);
+        student3.purchaseCourse(5000);
+
+        /*
+        Java bean is created
+        Injected inside Student bean
+        Java course is purchased at 5000
+        Transaction Success
+         */
+
+    }
     public static void main(String[] args) {
         // ambiguity();
         // autowiringUsingConstructor();
         // lazyInit();
-        getbeanNewLearning();
+        // getbeanNewLearning();
+        innerBean();
     }
 }

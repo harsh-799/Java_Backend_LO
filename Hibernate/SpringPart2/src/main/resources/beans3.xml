@@ -26,4 +26,24 @@
     <!-- Don;t mixup lazy-init with the scope as prototype beacuse that's also sounds like lazy but that's a diff type of bean
     In this we basically Make the SIngleton beans as lazy -->
 
+    <!--
+    🚀 What is an Inner Bean?
+    👉 An inner bean is a bean that is declared inside another bean and is used only for that bean.
+
+    It is not reusable and not accessible from outside
+    -->
+
+<!--    <bean id="stud" class="com.harsh.springcore.model.Student">-->
+<!--        <constructor-arg ref="javacourse"> &lt;!&ndash; ❌ Worng way: No need to referring to any where if we use InnerBean&ndash;&gt;-->
+<!--            <bean id="javacourse" class="com.harsh.springcore.model.JavaCourse" />-->
+<!--        </constructor-arg>-->
+<!--    </bean>-->
+
+    <!-- Correct Way-->
+    <bean id="stud" class="com.harsh.springcore.model.Student">
+        <constructor-arg>
+            <bean id="javacourse" class="com.harsh.springcore.model.JavaCourse" />
+        </constructor-arg>
+    </bean>
+
 </beans>
