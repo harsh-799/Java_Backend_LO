@@ -19,8 +19,14 @@ public class LandingPage2 {
         // Injected inside Student bean
 
     }
+
+    public static void lazyInit() {
+        ApplicationContext context = new ClassPathXmlApplicationContext("beans3.xml");
+
+    }
     public static void main(String[] args) {
         // ambiguity();
-        autowiringUsingConstructor();
+        // autowiringUsingConstructor();
+        lazyInit();
     }
 }

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 👀 Whenever the beans files loaded all the singleton beans are created immediately also known as Eager initialization -->
+    <bean class="com.harsh.springcore.model.JavaCourse" />
+    <bean class="com.harsh.springcore.model.SpringBootCourse" />
+
+    <!-- ✅
+    Java bean is created
+    SpringBoot bean is created
+    -->
+
+    <!-- 👀 Now, when we mark any beans as LazyInit they'll be not created as the Beans.xml is loaded infcat they'll load whenever someone needs them-->
+    <bean class="com.harsh.springcore.model.JavaCourse" />
+    <bean class="com.harsh.springcore.model.SpringBootCourse" lazy-init="true" />
+
+    <!--✅
+    Java bean is created
+    -->
+
+    <!-- 🎨 lazy-init delays bean creation until it is first requested, while by default Spring eagerly initializes all singleton beans at container startup -->
+
+    <!-- Don;t mixup lazy-init with the scope as prototype beacuse that's also sounds like lazy but that's a diff type of bean
+    In this we basically Make the SIngleton beans as lazy -->
+
+</beans>
