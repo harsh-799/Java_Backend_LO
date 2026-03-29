@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <!-- 3. Constructor  -->
+    <bean id="stud1" class="com.harsh.springcore.model.Student" autowire="constructor" />
+
+    <bean class="com.harsh.springcore.model.JavaCourse" />
+    <bean class="com.harsh.springcore.model.SpringBootCourse" />
+
+    <!-- Raises ambiguity because both are of same type-->
+    <!-- Unsatisfied dependency expressed through constructor parameter 0: No qualifying bean of type 'com.harsh.springcore.model.Courses' available: expected single matching bean but found 2: com.harsh.springcore.model.JavaCourse#0,com.harsh.springcore.model.SpringBootCourse#0-->
+    <bean class="com.harsh.springcore.model.JavaCourse" primary="true" /> <!-- Solution is use primary="true"-->
+
+</beans>

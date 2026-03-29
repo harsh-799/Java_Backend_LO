@@ -10,7 +10,17 @@ public class LandingPage2 {
         ApplicationContext context = new ClassPathXmlApplicationContext("beans2.xml");
         Student student0 = (Student) context.getBean("stud0");
     }
+
+    public static void autowiringUsingConstructor() {
+        ApplicationContext context = new ClassPathXmlApplicationContext("beans1a.xml");
+        Student student1 = (Student) context.getBean("stud1");
+        // OUTPUT
+        // SpringBoot bean is created
+        // Injected inside Student bean
+
+    }
     public static void main(String[] args) {
-        ambiguity();
+        // ambiguity();
+        autowiringUsingConstructor();
     }
 }
