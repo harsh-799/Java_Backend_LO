@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <!-- AMBIGUITY byName() -->
+    <bean id="stud0" class="com.harsh.springcore.model.Student" autowire="byName" />
+
+    <bean id="courses" class="com.harsh.springcore.model.SpringBootCourse" />
+    <bean id="courses" class="com.harsh.springcore.model.JavaCourse" /> <!--Error: Configuration problem: Bean name 'courses' is already used in this <beans> element-->
+
+    <!--
+    🚫 Can ambiguity happen here?
+    👉 NO ambiguity, because:
+    Bean IDs must be unique
+    Only one exact match is possible
+
+    When the code runs this bean file is executed as soon as it's sees two bean with the same id it stops the flow there itself.
+
+    -->
+
+    <!-- AMBIGUITY byType() -->
+    <bean id="stud0" class="com.harsh.springcore.model.Student" autowire="byType" />
+
+    <bean id="com.harsh.springcore.model.SpringBootCourse" class="com.harsh.springcore.model.SpringBootCourse" />
+    <bean id="com.harsh.springcore.model.JavaCourse" class="com.harsh.springcore.model.JavaCourse" />
+
+    <!-- ❌ No qualifying bean of type 'com.harsh.springcore.model.Courses' available: expected single matching bean but found 2: com.harsh.springcore.model.SpringBootCourse,com.harsh.springcore.model.JavaCourse
+
+    🧩 It's showing this error because ultimately the JavaCourse or the SpringBootCOurse implement couses so at the end both are of the same type So Ambiguity ⚠️
+    -->
+
+    <!-- 🏷️ Fixing the Issue of Ambiguity in byType() -->
+
+    <bean id="stud0" class="com.harsh.springcore.model.Student" autowire="byType" />
+
+    <bean id="com.harsh.springcore.model.SpringBootCourse" class="com.harsh.springcore.model.SpringBootCourse" />
+    <bean id="com.harsh.springcore.model.JavaCourse" class="com.harsh.springcore.model.JavaCourse" primary="true"/> <!-- Whenever the spring is in ambiguity state we can use 🎉 primary=true to the bean which we want to get injected. Note: We can only mark 1 bean as primary otherwise it'll be again ambiguity -->
+
+    <!-- 🧠 Another Smart Case -->
+    <bean id="stud0" class="com.harsh.springcore.model.Student" autowire="byType">
+        <constructor-arg ref="com.harsh.springcore.model.SpringBootCourse"/>
+    </bean>
+
+    <bean id="com.harsh.springcore.model.SpringBootCourse" class="com.harsh.springcore.model.SpringBootCourse" />
+    <bean id="com.harsh.springcore.model.JavaCourse" class="com.harsh.springcore.model.JavaCourse" primary="true"/>
+
+    <!--🕵️‍♂️
+    SpringBoot bean is created
+    Injected inside Student bean
+    Java bean is created
+    -->
+
+    <!-- ⚠️ Note: When we use autowire we basically leave everything on spring to make the link instead of we doing it manually, but if we using autowiring and alongside we have also used manually injecting either by construcor inj/ setter inj, then the preference of manual injection will be more -->
+
+</beans>
