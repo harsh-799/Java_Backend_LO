@@ -24,9 +24,31 @@ public class LandingPage2 {
         ApplicationContext context = new ClassPathXmlApplicationContext("beans3.xml");
 
     }
+
+    public static void getbeanNewLearning() {
+        ApplicationContext context = new ClassPathXmlApplicationContext("beans3.xml");
+
+        // Earlier we need to expicitly do the type conversion, but getBean() have many overrrided methods
+        // Student student = (Student) context.getBean("Student"); // Earlier way
+
+        //🔥 Types of getBean() Methods
+
+        // ✅ 1. getBean(String name) (Doiing till now the above one)
+
+        // ✅ 2. getBean(String name, Class<T> requiredType)
+        Student student1 = context.getBean("stud",Student.class);
+
+        // Student bean is created
+        // Student bean is created
+
+        // ✅ 3. getBean(Class<T> requiredType)
+        Student student2 = context.getBean(Student.class);
+        // it'll go to the XML file and look for the bean which belngs to the Student.class make sure you have single bean otherwise Ambiguity case.
+    }
     public static void main(String[] args) {
         // ambiguity();
         // autowiringUsingConstructor();
-        lazyInit();
+        // lazyInit();
+        getbeanNewLearning();
     }
 }

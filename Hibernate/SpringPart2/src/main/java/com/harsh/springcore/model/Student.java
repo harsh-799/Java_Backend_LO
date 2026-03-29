@@ -3,9 +3,9 @@ package com.harsh.springcore.model;
 public class Student {
     Courses courses;
 
-    // public Student() {
-    //     System.out.println("Student bean is created");
-    // }
+    public Student() {
+        System.out.println("Student bean is created");
+    }
     // Need to comment this otherwise ambiguity case was not happening because instead of parameterized constructor it was referring to this non constrcutor parameterised constrcutor.
 
     public Student(Courses courses) {
