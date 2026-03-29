@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 🚀 Autowiring in Spring Framework is a feature that automatically injects dependencies (objects) into your class without you manually creating or linking them.
+
+   👉 In short: Instead of you connecting objects, Spring does it for you.
+   -->
+
+    <!-- 🔥 Types of Autowiring
+    1. ByName
+    2. ByType
+    3. Constructor
+    -->
+
+    <!-- 1. byName() -->
+
+    <bean id="student1" class="com.harsh.springcore.model.Student" autowire="byName" /> <!-- 🔥 The class which will inject the value must be declared with autowire="autowiretype"-->
+
+    <bean id="courses" class="com.harsh.springcore.model.JavaCourse" /> <!-- 🔥 The name of the id here should be same as of the property defined in the class which will be injecting them -->
+
+    <!-- 2. ByType() -->
+
+    <bean id="student2" class="com.harsh.springcore.model.Student" autowire="byType" /> <!-- 🔥 The class which will inject the value must be declared with autowire="autowiretype"-->
+
+    <bean class="com.harsh.springcore.model.SpringBootCourse" />
+
+
+</beans>

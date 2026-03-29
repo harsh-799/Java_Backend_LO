@@ -33,8 +33,32 @@ public class LandingPage {
 
     }
 
+    public static void autowiringConceptByName() {
+        ApplicationContext context = new ClassPathXmlApplicationContext("beans0a.xml");
+        Student student1 = (Student) context.getBean("student1");
+        student1.purchaseCourse(5000);
+        // OUTPUT
+        // Student bean is created
+        // Java bean is created
+        // Java course is purchased at 5000
+        // Transaction Success
+    }
+
+    public static void autowiringConceptByType() {
+        ApplicationContext context = new ClassPathXmlApplicationContext("beans0a.xml");
+        Student student1 = (Student) context.getBean("student2");
+        student1.purchaseCourse(3000);
+        // OUTPUT
+        // Student bean is created
+        // SpringBoot bean is created
+        // SpringBoot course is purchased at 3000
+        // Transaction Success
+    }
+
     public static void main(String[] args) {
         // earlierWayUsingProperty();
-        earlierWayUsingConstructor();
+        // earlierWayUsingConstructor();
+        // autowiringConceptByName();
+        autowiringConceptByType();
     }
 }

@@ -10,7 +10,5 @@
         <constructor-arg ref="springBootCourseC" />
     </bean>
 
-    <!-- 🔒 Now in the both cases setter injection and constructor injection the issue is we need to manually link the property -> ref (both in setter or constrcutor). Now the workaround of is this is Autowiring-->
-
 
 </beans>
