@@ -58,6 +58,13 @@ public class Start {
         // Engine bean injected into the Car bean
     }
 
+    public static void autowiringInSetters() {
+        ApplicationContext context = new AnnotationConfigApplicationContext(Appconfig.class);
+
+
+
+    }
+
 
     public static void main(String[] args) {
         // beanCreationUsingComponent();
