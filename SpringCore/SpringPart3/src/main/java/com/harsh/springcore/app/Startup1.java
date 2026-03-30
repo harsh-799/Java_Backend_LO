@@ -2,8 +2,10 @@ package com.harsh.springcore.app;
 
 import com.harsh.springcore.config.AppConfig1;
 import com.harsh.springcore.config.AppConfig2;
+import com.harsh.springcore.config.AppConfig3;
 import com.harsh.springcore.model.Car;
 import com.harsh.springcore.model.Demo;
+import com.harsh.springcore.model.LPUVerto;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -88,11 +90,35 @@ public class Startup1 {
 
     }
 
+    public static void injectingAmbiguitiesIntroToPrimary() {
+        ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig3.class);
+
+        LPUVerto verto1 = context.getBean("verto", LPUVerto.class);
+        verto1.purchaseCourse();
+
+        // 🧰 OUTPUT (WHEN THE springcourse() bean is commented)
+        // Java course Bean is created
+        // Java Course is purchased
+        // Transaction: Success ✅
+
+        // When we uncommented it it raised the exception UnsatisfiedDependencyException: Error creating bean with name 'verto' defined in com.harsh.springcore.config.AppConfig3: Unsatisfied dependency expressed through method 'verto' parameter 0: No qualifying bean of type 'com.harsh.springcore.model.Course' available: expected single matching bean but found 2: javaCourse,springCourse.
+
+        // TO fix that use @Primary Annotation to the bean which should be executed when there's ambiguity condition
+
+        // 🧰 OUTPUT (Nothing is commented now)
+        // Spring Course Bean is created
+        // Java course Bean is created
+        // Spring Course is Purchased
+        // Transaction: Success ✅
+
+    }
+
     public static void main(String[] args) {
         // beanScopes();
         // injectingValues();
         // injectingRef();
         // injectingIntoConstructor();
-        injectIntoConstructorStep2();
+        // injectIntoConstructorStep2();
+        injectingAmbiguitiesIntroToPrimary();
     }
 }
