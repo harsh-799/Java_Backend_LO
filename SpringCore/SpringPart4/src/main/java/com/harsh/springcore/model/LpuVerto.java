@@ -1,9 +1,11 @@
 package com.harsh.springcore.model;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 @Component
+@Scope("prototype")
 public class LpuVerto {
     Course course;
 
@@ -18,5 +20,9 @@ public class LpuVerto {
             System.out.println("Transaction: Success ✅");
         else
             System.out.println("Transaction: Failed");
+    }
+
+    public String getCourse() {
+        return course.getClass().getName();
     }
 }
