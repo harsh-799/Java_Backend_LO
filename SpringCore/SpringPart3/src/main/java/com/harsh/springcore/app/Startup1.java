@@ -76,10 +76,23 @@ public class Startup1 {
 
     }
 
+    public static void injectIntoConstructorStep2() {
+        ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig2.class);
+
+        Car car = context.getBean("mybean",Car.class);
+
+        // 🧰 OUTPUT
+        // Engine bean is created
+
+
+
+    }
+
     public static void main(String[] args) {
         // beanScopes();
         // injectingValues();
         // injectingRef();
-        injectingIntoConstructor();
+        // injectingIntoConstructor();
+        injectIntoConstructorStep2();
     }
 }

@@ -22,6 +22,22 @@ public class AppConfig2 {
     </bean>
     */
 
+    // 🧩 Step 2: NEW WAY OF CONSTRUCTOR INJECTION
+
+    @Bean(name="mybean")
+    public Car car1(Engine engine) {
+        return new Car("Tata Safari",engine);
+    }
+
+    /* CORE DIFFERENCE IN STEP1 and STEP2
+    | Old Way                | New Way               |
+    | ---------------------- | --------------------- |
+    | You call `engine()`    | Spring gives `engine` |
+    | Manual wiring          | Automatic wiring      |
+    | You control everything | Spring helps          |
+
+     */
+
     @Bean
     public Engine engine() {
         return new Engine();
