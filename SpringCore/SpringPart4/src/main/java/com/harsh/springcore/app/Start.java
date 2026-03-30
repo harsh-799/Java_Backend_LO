@@ -49,9 +49,20 @@ public class Start {
         System.out.println(car.getEngine()); // ✅ com.harsh.springcore.model.Engine@5bfa9431
 
     }
+
+    public static void autowiringInConsructor() {
+        ApplicationContext context = new AnnotationConfigApplicationContext(Appconfig.class);
+
+        // 🧰  OUTPUT
+        // Engine bean is created
+        // Engine bean injected into the Car bean
+    }
+
+
     public static void main(String[] args) {
         // beanCreationUsingComponent();
-        autowiringConceptInComponentWay();
+        // autowiringConceptInComponentWay();
+        autowiringInConsructor();
 
     }
 }
