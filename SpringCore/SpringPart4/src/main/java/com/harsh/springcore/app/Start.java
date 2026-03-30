@@ -27,8 +27,31 @@ public class Start {
 
          */
     }
+
+    public static void autowiringConceptInComponentWay() {
+        ApplicationContext context = new AnnotationConfigApplicationContext(Appconfig.class);
+
+        // 🧰 OUTPUT
+        // Car bean is created
+        // Engine bean is created
+
+        Car car = context.getBean(Car.class);
+        System.out.println(car.getEngine()); // ✅   null
+
+        // Confused why? As We can see in output the bean is created still why it's still showing as Null.
+        // Reason is simple: Even if there is bean created in the container but the Car really knows that there's bean inside container of engine type and link me to that.
+        // SO there's issue in linking connection so for that just use 🗣️ @Autowired
+
+        // 🧠 One-Line Truth
+        // Beans existing ≠ Beans connected
+        // @Autowired = connection
+
+        System.out.println(car.getEngine()); // ✅ com.harsh.springcore.model.Engine@5bfa9431
+
+    }
     public static void main(String[] args) {
-        beanCreationUsingComponent();
+        // beanCreationUsingComponent();
+        autowiringConceptInComponentWay();
 
     }
 }
