@@ -113,12 +113,26 @@ public class Startup1 {
 
     }
 
+    public static void injectingAmbiguitiesIntroToQualifier() {
+        ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig3.class);
+
+        LPUVerto verto2 = context.getBean("verto2", LPUVerto.class);
+        verto2.purchaseCourse();
+
+        // 🧰 OUTPUT
+        // Spring Course Bean is created
+        // Java course Bean is created
+        // Spring Course is Purchased
+        // Transaction: Success ✅
+    }
+
     public static void main(String[] args) {
         // beanScopes();
         // injectingValues();
         // injectingRef();
         // injectingIntoConstructor();
         // injectIntoConstructorStep2();
-        injectingAmbiguitiesIntroToPrimary();
+        // injectingAmbiguitiesIntroToPrimary();
+        injectingAmbiguitiesIntroToQualifier();
     }
 }
