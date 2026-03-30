@@ -1,0 +1,17 @@
+package com.harsh.springcore.model;
+
+public class Car {
+    String brandName;
+
+    public Car() {
+        System.out.println("Car bean is created");
+    }
+
+    public String getBrandName() {
+        return brandName;
+    }
+
+    public void setBrandName(String brandName) {
+        this.brandName = brandName;
+    }
+}
