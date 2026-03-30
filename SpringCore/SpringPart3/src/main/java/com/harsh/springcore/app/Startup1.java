@@ -1,6 +1,7 @@
 package com.harsh.springcore.app;
 
 import com.harsh.springcore.config.AppConfig1;
+import com.harsh.springcore.model.Car;
 import com.harsh.springcore.model.Demo;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -39,7 +40,17 @@ public class Startup1 {
         // Demo bean is injected
 
     }
+
+    public static void injectingValues() {
+        ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig1.class);
+
+        // Now we'll be injecting the value without doing it manually using setter().
+        Car car = context.getBean("car",Car.class);
+        System.out.println(car.getBrandName());
+    }
+
     public static void main(String[] args) {
-        beanScopes();
+        // beanScopes();
+        injectingValues();
     }
 }

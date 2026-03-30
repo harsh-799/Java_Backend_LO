@@ -11,7 +11,9 @@ public class AppConfig1 {
 
     @Bean
     public Car car() {
-        return new Car();
+        Car car = new Car();
+        car.setBrandName("Tata Punch"); // 🔑 We're injecting into the property here using setter
+        return car;
     }
 
     @Bean
