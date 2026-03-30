@@ -8,6 +8,12 @@ public class Car {
         System.out.println("Car bean is created");
     }
 
+    // SInce we'll learn now constructor injection so creating parameter constructor for it.
+    public Car(String brandName, Engine engine) {
+        this.brandName = brandName;
+        this.engine = engine;
+    }
+
     public String getBrandName() {
         return brandName;
     }

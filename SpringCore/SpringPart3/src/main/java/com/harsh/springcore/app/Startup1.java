@@ -1,6 +1,7 @@
 package com.harsh.springcore.app;
 
 import com.harsh.springcore.config.AppConfig1;
+import com.harsh.springcore.config.AppConfig2;
 import com.harsh.springcore.model.Car;
 import com.harsh.springcore.model.Demo;
 import org.springframework.context.ApplicationContext;
@@ -62,9 +63,23 @@ public class Startup1 {
 
     }
 
+    public static void injectingIntoConstructor() {
+        ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig2.class);
+
+        Car car = context.getBean("car",Car.class);
+        System.out.println(car.getBrandName() + " " + car.getEngine());
+
+        // OUTPUT
+        // Engine bean is created
+        // Tata Punch com.harsh.springcore.model.Engine@694abbdc
+
+
+    }
+
     public static void main(String[] args) {
         // beanScopes();
         // injectingValues();
-        injectingRef();
+        // injectingRef();
+        injectingIntoConstructor();
     }
 }
