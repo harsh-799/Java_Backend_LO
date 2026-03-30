@@ -2,6 +2,7 @@ package com.harsh.springcore.model;
 
 public class Car {
     String brandName;
+    Engine engine;
 
     public Car() {
         System.out.println("Car bean is created");
@@ -13,5 +14,13 @@ public class Car {
 
     public void setBrandName(String brandName) {
         this.brandName = brandName;
+    }
+
+    public Engine getEngine() {
+        return engine;
+    }
+
+    public void setEngine(Engine engine) {
+        this.engine = engine;
     }
 }

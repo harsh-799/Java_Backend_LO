@@ -49,8 +49,22 @@ public class Startup1 {
         System.out.println(car.getBrandName());
     }
 
+    public static void injectingRef() {
+        ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig1.class);
+
+        Car carObj = context.getBean("car1",Car.class);
+
+        // Before injecting the values
+        System.out.println(carObj.getEngine()); // ✅ null
+
+        // After injecting concept
+        System.out.println(carObj.getEngine()); // ✅ com.harsh.springcore.model.Engine@a514af7
+
+    }
+
     public static void main(String[] args) {
         // beanScopes();
-        injectingValues();
+        // injectingValues();
+        injectingRef();
     }
 }
