@@ -28,8 +28,20 @@ public class Start {
         // 📈 The example we did is inject using Constructor so we defined it in constrcutor
     }
 
+    public static void valueConceptInComponentWay() {
+        ApplicationContext context = new AnnotationConfigApplicationContext(Appconfig5.class);
+
+        LpuVerto kartik = context.getBean(LpuVerto.class);
+        System.out.println(kartik.getVertoName()); // ✅ LPU VERTO
+
+        kartik.setVertoName("Kartik");
+        System.out.println(kartik.getVertoName()); // ✅ Kartik
+
+    }
+
     public static void main(String[] args) {
-        qualifierConceptInComponentWay();
+        // qualifierConceptInComponentWay();
+        valueConceptInComponentWay();
 
     }
 }
