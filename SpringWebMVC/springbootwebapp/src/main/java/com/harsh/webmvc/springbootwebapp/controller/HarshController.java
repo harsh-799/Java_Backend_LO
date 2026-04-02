@@ -6,6 +6,7 @@ package com.harsh.webmvc.springbootwebapp.controller;
 * We'll use @Controller annotation with it.
 */
 
+import com.harsh.webmvc.springbootwebapp.model.User;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -14,6 +15,7 @@ import org.springframework.boot.info.OsInfo;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -168,6 +170,32 @@ public class HarshController {
     | Separate               | Combined           |
 
      */
+
+
+    // 💾 Now we have mostly get Rid of almost all the old stuffs and changed it with SpringMVC expect one thing even we have introduced ModelAndView addObjects() one by one into model really sucks.
+    // 💾 Suppose what if there's 20 data are we supposed to write addObject() for every property NO right?
+
+    // 💾 So there the concept of @ModelAttribute comes on.
+    //👉 Instead of multiple variables:
+    // name, age, city, gender
+    //
+    // 👉 Use ONE object:
+    // User object
+
+    // 🧠 Concept (very important)
+    //
+    // @ModelAttribute automatically:
+    //
+    // Takes data from form
+    // Maps it to object fields
+    // Sends object to controller
+    // Adds it to model
+
+    @RequestMapping("/submitdatamodelattribute")
+    public String showUserDataModelAndView(@ModelAttribute User user) {
+
+        return "userdatamodelattribute.jsp";
+    }
 
 
 }
