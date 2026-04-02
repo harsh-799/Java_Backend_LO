@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class HarshController {
@@ -119,6 +120,52 @@ public class HarshController {
     | Temporary     | Persistent |
     | Request-based | User-based |
     | Lightweight   | Heavy      |
+
+     */
+
+
+    // Introduction to ModelAndView
+
+    /*
+    🧩 Why it exists
+
+    Till now you did:
+    model.addAttribute("sum", sum);
+    return "result";
+
+    👉 Two separate things:
+
+    Model → data
+    String → view
+
+    ⚡ ModelAndView combines them
+
+    👉 Instead of 2 things:
+    Model + String
+
+    👉 You return:
+    ModelAndView (single object)
+     */
+
+    @RequestMapping("/submitdatamodelandview")
+    public ModelAndView showUserDataModelAndView(String name, int age, String city, String gender, ModelAndView mv) {
+
+        mv.addObject("name",name);
+        mv.addObject("age",age);
+        mv.addObject("city",city);
+        mv.addObject("gender",gender);
+
+        mv.setViewName("userdatamodel.jsp");
+
+        return mv;
+    }
+
+    /* 🧠 Compare with Model
+    | Using Model            | Using ModelAndView |
+    | ---------------------- | ------------------ |
+    | `model.addAttribute()` | `mv.addObject()`   |
+    | `return "view"`        | `mv.setViewName()` |
+    | Separate               | Combined           |
 
      */
 
