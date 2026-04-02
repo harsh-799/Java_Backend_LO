@@ -13,6 +13,7 @@ import jakarta.websocket.Session;
 import org.springframework.boot.info.OsInfo;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -77,6 +78,49 @@ public class HarshController {
 
         return "userdata.jsp";
     }
+
+
+    // 👉 In Spring MVC:
+    // Model is a container used to send data from Controller → View (JSP/HTML)
+
+    // 🔥 One-line intuition
+    // Model = a temporary data box for one request
+
+    // 🧠 Why Model exists
+    // Right now you’re doing:
+    // session.setAttribute("name", name);
+
+    // 👉 Problems:
+    // ❌ Stored globally (session scope)
+    // ❌ Stays for multiple requests
+    // ❌ Not clean for simple data passing
+
+    //🧠 Real-life analogy
+    // Think:
+    // Session = locker (long-term storage) 🔒
+    // Model = tray (just passing items) 🍽️
+
+    @RequestMapping("/submitdatamodel")
+    public String showUserDataModel(String name, int age, String city, String gender, Model model) {
+
+        model.addAttribute("name",name);
+        model.addAttribute("age",age);
+        model.addAttribute("city",city);
+        model.addAttribute("gender",gender);
+
+        return "userdatamodel.jsp";
+    }
+
+    /*
+
+    ⚠️ Important difference (very important)
+    | Model         | Session    |
+    | ------------- | ---------- |
+    | Temporary     | Persistent |
+    | Request-based | User-based |
+    | Lightweight   | Heavy      |
+
+     */
 
 
 }
