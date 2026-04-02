@@ -40,6 +40,26 @@
 			<artifactId>spring-boot-starter-webmvc-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-jasper</artifactId>
+        </dependency>
+
+        <!--
+        Embedded Tomcat (used by Spring Boot):
+        ❌ Does NOT include JSP engine by default
+        ❌ Cannot process .jsp files
+
+        💥 So what does tomcat-embed-jasper do?
+
+        👉 It provides:
+
+        JSP compiler (Jasper)
+        JSP → Servlet conversion
+        Runtime support for JSP
+        -->
+
 	</dependencies>
 
 	<build>

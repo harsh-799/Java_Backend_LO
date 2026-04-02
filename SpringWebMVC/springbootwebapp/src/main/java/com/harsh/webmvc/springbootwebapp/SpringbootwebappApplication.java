@@ -1,13 +1,15 @@
 package com.harsh.webmvc.springbootwebapp;
 
+import com.harsh.webmvc.springbootwebapp.controller.HarshController;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
 
 @SpringBootApplication
 public class SpringbootwebappApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringbootwebappApplication.class, args);
+		ApplicationContext context = SpringApplication.run(SpringbootwebappApplication.class, args);
 
         /* This is basically the springboot application embedded with tomcat server we don't need to configure anything in this like Making Tomcat object, Context path nothing.
         * Spring do everything automatically for us.
@@ -16,6 +18,8 @@ public class SpringbootwebappApplication {
         *
         * All this doubts are valid and we'll see in future commits which part replaces what of the Normal Approach.
         */
+
+        // HarshController controller = context.getBean(HarshController.class); 🕵️‍♂️ No need because bean is automatically created by Spring because @Controller annotation is used.
 	}
 
 }
