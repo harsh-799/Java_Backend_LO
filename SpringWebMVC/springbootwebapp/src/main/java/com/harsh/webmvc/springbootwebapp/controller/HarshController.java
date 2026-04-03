@@ -194,7 +194,37 @@ public class HarshController {
     @RequestMapping("/submitdatamodelattribute")
     public String showUserDataModelAndView(@ModelAttribute User user) {
 
-        return "userdatamodelattribute.jsp";
+        return "userdatamodelattribute"; // Earlier we used to do hardcoded like .jsp but that's a bad practice to do so.
+        // So as soon as we removed to .jsp now it throw error see issue.png.
+        // Now to fix that we need to use Prefix and Suffix concepts, And for making it more tricky i am putting it in views/ folder so that The default SpringBoot behaviour doesn't catch it.
+
+        // 🧠 So are you bypassing ViewResolver?
+        // 👉 Kind of YES
+        // You are using:
+        // "default simple resolution"
+        // Not the full ViewResolver mechanism
+
+
+        // AFTER FIXING IT UP
+        // 🧠 Deep understanding (this is the key)
+        // ViewResolver is useful only when you return logical view names, not actual file names.
+
+
+        // 🎯 One-line clarity
+        // Your JSP works without prefix/suffix because you're returning the full file name, so Spring directly forwards to it instead of resolving it.
+        // ViewResolver is optional if you hardcode view paths
+
+        // 🛠️ When you use prefix and suffix, Spring Boot uses a ViewResolver internally to convert logical view names into actual file paths.
+
+        // ViewResolver kicks in
+        //         ↓
+        // prefix + viewName + suffix
+        //         ↓
+        // /WEB-INF/jsp/userdata.jsp
+
+        // 🧠 Who does this?
+        // 👉 A class inside Spring MVC:
+        // InternalResourceViewResolver
     }
 
 
