@@ -115,7 +115,29 @@ public class SpringdatajpaApplication {
         System.out.println(repo.existsByStudentName("Harsh Anand")); // ✅ true
     }
 
-	public static void main(String[] args) {
+    public static void deleteByIdBasics(ApplicationContext context, StudentRepo repo) {
+        Optional<Student> res = repo.findById(3);
+
+        // if (res.isPresent()) {
+        //     repo.deleteById(3);
+        //     System.out.println("Deleted Successfully");
+        //     return;
+        // }
+
+        // 📢 More better approach
+
+        if (repo.existsById(3)) {
+            repo.deleteById(3);
+            System.out.println("Deleted Successfully ");
+            return;
+        }
+
+        System.out.println("Not Found");
+
+        System.out.println("ID NOT FOund");
+    }
+
+    public static void main(String[] args) {
 		ApplicationContext context = SpringApplication.run(SpringdatajpaApplication.class, args);
         StudentRepo repo = context.getBean(StudentRepo.class);
 
@@ -141,7 +163,11 @@ public class SpringdatajpaApplication {
         // updatingDataTransactional(context,repo);
 
         // 🔆 CustomChecks()
-        checkingCustomExistence(context, repo);
+        // checkingCustomExistence(context, repo);
+
+        // 🔆 deletingBasicsById
+        deleteByIdBasics(context, repo);
+
     }
 
 }

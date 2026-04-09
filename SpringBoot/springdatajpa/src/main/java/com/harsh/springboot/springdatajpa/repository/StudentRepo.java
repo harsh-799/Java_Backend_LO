@@ -20,5 +20,4 @@ public interface StudentRepo extends JpaRepository<Student, Integer> {
 
     public boolean existsByStudentName(String name); // Also no need to write public since by def in abstract method everything is public abstract.
 
-
 }
