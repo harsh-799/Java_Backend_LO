@@ -137,6 +137,11 @@ public class SpringdatajpaApplication {
         System.out.println("ID NOT FOund");
     }
 
+    public static void deleteByCustomFields(ApplicationContext context, StudentRepo repo) {
+        StudentService service = context.getBean(StudentService.class);
+        service.deleteByEmail("ananya.sharma@gmail.com");
+
+    }
     public static void main(String[] args) {
 		ApplicationContext context = SpringApplication.run(SpringdatajpaApplication.class, args);
         StudentRepo repo = context.getBean(StudentRepo.class);
@@ -166,7 +171,11 @@ public class SpringdatajpaApplication {
         // checkingCustomExistence(context, repo);
 
         // 🔆 deletingBasicsById
-        deleteByIdBasics(context, repo);
+        // deleteByIdBasics(context, repo);
+
+        // 🔆 deleteUsingCustomField
+        deleteByCustomFields(context, repo);
+
 
     }
 
