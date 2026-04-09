@@ -75,6 +75,13 @@ public class SpringdatajpaApplication {
         else System.out.println("No records found..");
     }
 
+    public static void getDataByCustomPropertyQuery(ApplicationContext context, StudentRepo repo) {
+        Optional<Student> student = repo.findByNaamAndEmailQueryEdition("Priya Singh","priya.singh@outlook.com");
+
+        if (student.isPresent()) System.out.println(student); // ✅ Optional[Student{studentId=4, studentName='Priya Singh', studentEmail='priya.singh@outlook.com', studentMobileNumber=9090909090}]
+        else System.out.println("No records found..");
+    }
+
 	public static void main(String[] args) {
 		ApplicationContext context = SpringApplication.run(SpringdatajpaApplication.class, args);
         StudentRepo repo = context.getBean(StudentRepo.class);
@@ -89,7 +96,10 @@ public class SpringdatajpaApplication {
         // getDataId(context,repo);
 
         // 🔆 Retrival of Data W/o PK
-        getDataByCustomProperty(context,repo);
+        // getDataByCustomProperty(context,repo);
+
+        // 🔆 Retrival of Data W/o PK AND JPQL
+        getDataByCustomPropertyQuery(context, repo);
     }
 
 }
