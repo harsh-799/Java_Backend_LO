@@ -49,4 +49,14 @@ public class Student {
     public void setStudentMobileNumber(long studentMobileNumber) {
         this.studentMobileNumber = studentMobileNumber;
     }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "studentId=" + studentId +
+                ", studentName='" + studentName + '\'' +
+                ", studentEmail='" + studentEmail + '\'' +
+                ", studentMobileNumber=" + studentMobileNumber +
+                '}';
+    }
 }
