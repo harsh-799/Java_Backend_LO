@@ -111,6 +111,10 @@ public class SpringdatajpaApplication {
 
     }
 
+    public static void checkingCustomExistence(ApplicationContext context, StudentRepo repo) {
+        System.out.println(repo.existsByStudentName("Harsh Anand")); // ✅ true
+    }
+
 	public static void main(String[] args) {
 		ApplicationContext context = SpringApplication.run(SpringdatajpaApplication.class, args);
         StudentRepo repo = context.getBean(StudentRepo.class);
@@ -134,7 +138,10 @@ public class SpringdatajpaApplication {
         // updatingData(context,repo);
 
         // 🔆 updatingDataTransactionalWay
-        updatingDataTransactional(context,repo);
+        // updatingDataTransactional(context,repo);
+
+        // 🔆 CustomChecks()
+        checkingCustomExistence(context, repo);
     }
 
 }

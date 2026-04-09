@@ -18,5 +18,7 @@ public interface StudentRepo extends JpaRepository<Student, Integer> {
     @Query("SELECT s FROM Student s WHERE s.studentName = :name AND s.studentEmail = :email")
     public Optional<Student> findByNaamAndEmailQueryEdition(@Param("name") String naam, @Param("email") String email);
 
+    public boolean existsByStudentName(String name); // Also no need to write public since by def in abstract method everything is public abstract.
+
 
 }
