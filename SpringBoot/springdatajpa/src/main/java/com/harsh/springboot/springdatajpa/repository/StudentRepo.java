@@ -17,4 +17,6 @@ public interface StudentRepo extends JpaRepository<Student, Integer> {
 
     @Query("SELECT s FROM Student s WHERE s.studentName = :name AND s.studentEmail = :email")
     public Optional<Student> findByNaamAndEmailQueryEdition(@Param("name") String naam, @Param("email") String email);
+
+
 }

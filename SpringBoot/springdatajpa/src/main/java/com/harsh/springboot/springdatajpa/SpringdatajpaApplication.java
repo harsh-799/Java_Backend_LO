@@ -2,6 +2,8 @@ package com.harsh.springboot.springdatajpa;
 
 import com.harsh.springboot.springdatajpa.model.Student;
 import com.harsh.springboot.springdatajpa.repository.StudentRepo;
+import com.harsh.springboot.springdatajpa.service.StudentService;
+import jakarta.transaction.Transactional;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -82,6 +84,33 @@ public class SpringdatajpaApplication {
         else System.out.println("No records found..");
     }
 
+    public static void updatingData(ApplicationContext context, StudentRepo repo) {
+
+        // Eg1 (Fetching it first and then updating it and then saving it)
+        Optional<Student> res = repo.findById(3);
+
+        if (res.isPresent()) {
+            Student s = res.get();
+            s.setStudentName("Rohit Sharma");
+            repo.save(s);
+            System.out.println("Data Saved !");
+            return;
+        }
+
+        System.out.println("Id not found");
+    }
+
+    @Transactional
+    public static void updatingDataTransactional(ApplicationContext context, StudentRepo repo) {
+
+        StudentService service = context.getBean(StudentService.class);
+        service.updateStudent(4);
+        // Data Saved !
+        // Priya Rajput
+        // From DB: Priya Rajput
+
+    }
+
 	public static void main(String[] args) {
 		ApplicationContext context = SpringApplication.run(SpringdatajpaApplication.class, args);
         StudentRepo repo = context.getBean(StudentRepo.class);
@@ -99,7 +128,13 @@ public class SpringdatajpaApplication {
         // getDataByCustomProperty(context,repo);
 
         // 🔆 Retrival of Data W/o PK AND JPQL
-        getDataByCustomPropertyQuery(context, repo);
+        // getDataByCustomPropertyQuery(context, repo);
+
+        // 🔆 updatingTheData
+        // updatingData(context,repo);
+
+        // 🔆 updatingDataTransactionalWay
+        updatingDataTransactional(context,repo);
     }
 
 }
