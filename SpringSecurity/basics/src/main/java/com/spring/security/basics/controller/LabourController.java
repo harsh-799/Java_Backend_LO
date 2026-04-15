@@ -1,9 +1,12 @@
 package com.spring.security.basics.controller;
 
+import com.spring.security.basics.dto.AddLabourRequest;
 import com.spring.security.basics.dto.AllLabourResponse;
 import com.spring.security.basics.service.LabourService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -21,5 +24,10 @@ public class LabourController {
     @GetMapping("/labours")
     public List<AllLabourResponse> getAllLabours() {
         return labourService.getAllLabours();
+    }
+
+    @PostMapping("/labour")
+    public void addNewLabour(@RequestBody AddLabourRequest labourRequest) {
+        labourService.addLabour(labourRequest);
     }
 }

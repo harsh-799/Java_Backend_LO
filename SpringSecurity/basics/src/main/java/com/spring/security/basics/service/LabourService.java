@@ -1,5 +1,6 @@
 package com.spring.security.basics.service;
 
+import com.spring.security.basics.dto.AddLabourRequest;
 import com.spring.security.basics.dto.AllLabourResponse;
 import com.spring.security.basics.model.Labour;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,4 +37,8 @@ public class LabourService {
     }
 
 
+    public void addLabour(AddLabourRequest labourRequest) {
+        Labour labour = new Labour(labourRequest.getLabourId(), labourRequest.getLabourName(), labourRequest.getSalary(), labourRequest.getAge());
+        labourList.add(labour);
+    }
 }
