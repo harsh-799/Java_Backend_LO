@@ -1,0 +1,50 @@
+package com.spring.security.basics.model;
+
+public class Labour {
+    private int labourId;
+    private String labourName;
+    private int salary;
+    private int age;
+
+    public Labour() {
+    }
+
+    public Labour(int labourId, String labourName, int salary, int age) {
+        this.labourId = labourId;
+        this.labourName = labourName;
+        this.salary = salary;
+        this.age = age;
+    }
+
+    public int getLabourId() {
+        return labourId;
+    }
+
+    public void setLabourId(int labourId) {
+        this.labourId = labourId;
+    }
+
+    public String getLabourName() {
+        return labourName;
+    }
+
+    public void setLabourName(String labourName) {
+        this.labourName = labourName;
+    }
+
+    public int getSalary() {
+        return salary;
+    }
+
+    public void setSalary(int salary) {
+        this.salary = salary;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+}
