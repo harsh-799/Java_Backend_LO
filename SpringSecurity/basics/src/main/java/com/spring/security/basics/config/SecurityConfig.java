@@ -2,6 +2,7 @@ package com.spring.security.basics.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.User;
@@ -32,6 +33,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/labour").hasRole("ADMIN")
                         .requestMatchers("/labours").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/labour/**").permitAll()
+                        .requestMatchers(HttpMethod.DELETE, "/labour/**").hasRole("ADMIN") // Means only admin can hit the endPoint /labour with specified HTTP Request Method
                         .anyRequest().authenticated() // We forgot this Means All others route must need authentication to get accessed
                 )
                 .httpBasic(Customizer.withDefaults());
