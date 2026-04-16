@@ -32,6 +32,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/labour").hasRole("ADMIN")
                         .requestMatchers("/labours").permitAll()
+                        .anyRequest().authenticated() // We forgot this Means All others route must need authentication to get accessed
                 )
                 .httpBasic(Customizer.withDefaults());
 

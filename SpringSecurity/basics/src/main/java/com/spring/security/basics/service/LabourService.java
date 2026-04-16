@@ -3,7 +3,6 @@ package com.spring.security.basics.service;
 import com.spring.security.basics.dto.AddLabourRequest;
 import com.spring.security.basics.dto.AllLabourResponse;
 import com.spring.security.basics.model.Labour;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
