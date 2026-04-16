@@ -30,8 +30,8 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/labours").permitAll() // This means /labours end point doesn't require auth NOTE: Don't think RequestMatchers means /labour/any endPoint like /labour/hi, /labour/bye will work it explictly mean to /labour
-                        .anyRequest().authenticated() // whereas anyRequest other than that needs to be authenticated
+                        .requestMatchers("/labour").hasRole("ADMIN")
+                        .requestMatchers("/labours").permitAll()
                 )
                 .httpBasic(Customizer.withDefaults());
 
