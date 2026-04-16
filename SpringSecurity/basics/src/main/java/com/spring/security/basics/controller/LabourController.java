@@ -2,12 +2,10 @@ package com.spring.security.basics.controller;
 
 import com.spring.security.basics.dto.AddLabourRequest;
 import com.spring.security.basics.dto.AllLabourResponse;
+import com.spring.security.basics.model.Labour;
 import com.spring.security.basics.service.LabourService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,5 +27,15 @@ public class LabourController {
     @PostMapping("/labour")
     public void addNewLabour(@RequestBody AddLabourRequest labourRequest) {
         labourService.addLabour(labourRequest);
+    }
+
+    @GetMapping("/labour/{id}")
+    public Labour viewSpecificLabour(@PathVariable(name = "id") int id) {
+        return labourService.getSpecificLabour(id);
+    }
+
+    @DeleteMapping("/labour/{id}")
+    public String viewDelete(@PathVariable(name = "id") int id) {
+        return labourService.deleteLabour(id);
     }
 }

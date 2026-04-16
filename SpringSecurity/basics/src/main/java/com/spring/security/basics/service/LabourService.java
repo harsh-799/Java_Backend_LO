@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
 
 @Service
 public class LabourService {
@@ -39,5 +40,25 @@ public class LabourService {
     public void addLabour(AddLabourRequest labourRequest) {
         Labour labour = new Labour(labourRequest.getLabourId(), labourRequest.getLabourName(), labourRequest.getSalary(), labourRequest.getAge());
         labourList.add(labour);
+    }
+
+    public Labour getSpecificLabour(int id) {
+        for (Labour lab : labourList) {
+            if (lab.getLabourId() == id) return lab;
+        }
+
+        return null;
+    }
+
+    public String deleteLabour(int id) {
+        ListIterator<Labour> it = labourList.listIterator();
+        while (it.hasNext()) {
+            Labour curr = it.next();
+            if (curr.getLabourId() == id ) {
+                it.remove();
+                return curr.getLabourId() + " " + curr.getLabourName() + " "+ "Removed";
+            }
+        }
+        return "Not found ";
     }
 }
