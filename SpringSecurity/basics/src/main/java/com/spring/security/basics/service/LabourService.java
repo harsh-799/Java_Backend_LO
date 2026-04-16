@@ -56,7 +56,7 @@ public class LabourService {
             Labour curr = it.next();
             if (curr.getLabourId() == id ) {
                 it.remove();
-                return curr.getLabourId() + " " + curr.getLabourName() + " "+ "Removed";
+            return curr.getLabourId() + " " + curr.getLabourName() + " "+ "Removed";
             }
         }
         return "Not found ";

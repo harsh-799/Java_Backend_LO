@@ -41,27 +41,6 @@ public class SecurityConfig {
 
         return http.build();
     }
-
-    // Since till now we were able to Use the Backend with Single User Now we're declaring more than 1 user.
-
-    @Bean
-    public UserDetailsService userDetailsService() {
-
-        UserDetails user1 = User
-                .withUsername("Kartik")
-                .password("{noop}12345")
-                .roles("USER")
-                .build();
-
-        UserDetails user2 = User
-                .withUsername("Builder")
-                .password("{noop}builder")
-                .roles("ADMIN")
-                .build();
-
-        return new InMemoryUserDetailsManager(user1, user2);
-
-    }
 }
 
 /*
