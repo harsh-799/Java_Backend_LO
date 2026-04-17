@@ -24,30 +24,24 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username);
+        User userRecords = userRepository.findByUsername(username);
 
-        if (user == null) {
+        if (userRecords == null) {
             throw new UsernameNotFoundException("User is not avaialble");
         }
 
-        UserDetails userDetails = new UserDetails() {
-            @Override
-            public Collection<? extends GrantedAuthority> getAuthorities() {
-                return List.of(new SimpleGrantedAuthority("ROLE_" + user.getRole()));
-            }
+        // Since User Details is Intf so we need Something which implements it so we have 🌱User class (Of spring)
+        // 🌱User class implements the UserDetails intf
+        // In that there's an Method named as builder() which returns as Obj of 🌱Userbuilder class
+        // Using that obj of 🌱UserBuilder we assign (username, password, roles)
+        // And in That UserBuilder class there's one method called .build() which returns the object of 🌱UserDetails
+        // And ultimately we want that only so we return that obj.
 
-            @Override
-            public String getPassword() {
-                return "{noop}" + user.getPassword();
-            }
-
-            @Override
-            public String getUsername() {
-                return user.getUsername();
-            }
-        };
-
-        return userDetails;
+        return org.springframework.security.core.userdetails.User.builder()
+                .username(userRecords.getUsername())
+                .password("{noop}" + userRecords.getPassword())
+                .roles(userRecords.getRole())
+                .build();
 
 
     }
