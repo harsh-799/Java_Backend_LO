@@ -33,6 +33,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/labour").hasRole("ADMIN")
                         .requestMatchers("/labours").permitAll()
+                        .requestMatchers("/register").permitAll()
                         .requestMatchers(HttpMethod.GET, "/labour/**").permitAll()
                         .requestMatchers(HttpMethod.DELETE, "/labour/**").hasRole("ADMIN") // Means only admin can hit the endPoint /labour with specified HTTP Request Method
                         .anyRequest().authenticated() // We forgot this Means All others route must need authentication to get accessed

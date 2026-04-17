@@ -2,7 +2,9 @@ package com.spring.security.basics.controller;
 
 import com.spring.security.basics.dto.AddLabourRequest;
 import com.spring.security.basics.dto.AllLabourResponse;
+import com.spring.security.basics.service.CustomUserDetailsService;
 import com.spring.security.basics.model.Labour;
+import com.spring.security.basics.model.User;
 import com.spring.security.basics.service.LabourService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
