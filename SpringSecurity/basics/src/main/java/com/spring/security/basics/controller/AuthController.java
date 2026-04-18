@@ -22,8 +22,8 @@ public class AuthController {
 
         System.out.println("Into it (for debugging)");
 
-       authService.loginService(loginRequest);
+       return authService.loginService(loginRequest);
 
-       return "Success";
+
     }
 }

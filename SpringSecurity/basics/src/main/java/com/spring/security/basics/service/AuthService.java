@@ -14,10 +14,12 @@ import org.springframework.stereotype.Service;
 public class AuthService {
 
     private AuthenticationManager authenticationManager;
+    private JwtService jwtService;
 
     @Autowired
-    public AuthService(AuthenticationManager authenticationManager) {
+    public AuthService(AuthenticationManager authenticationManager, JwtService jwtService) {
         this.authenticationManager = authenticationManager;
+        this.jwtService = jwtService;
     }
 
     // Simple connection concept:
@@ -33,7 +35,7 @@ public class AuthService {
     // AuthenticationProvider (specifically DaoAuthenticationProvider) is impl of it
     // It's DaoAuthenticationProvider that actually Verifies user Cred
 
-    public Authentication loginService(UserLoginRequest loginRequest) {
+    public String loginService(UserLoginRequest loginRequest) {
         Authentication authentication = new UsernamePasswordAuthenticationToken(
                 loginRequest.getUsername(),
                 loginRequest.getPassword()
@@ -42,9 +44,13 @@ public class AuthService {
 
         Authentication result = authenticationManager.authenticate(authentication);
 
-        System.out.println("Authenticated: " + result.isAuthenticated());
+        // System.out.println("Authenticated: " + result.isAuthenticated());
 
-        return result;
+        if (result.isAuthenticated()) {
+            return jwtService.generateToken(result);
+        }
+
+        return "Invalid Cred";
     }
 
 }
