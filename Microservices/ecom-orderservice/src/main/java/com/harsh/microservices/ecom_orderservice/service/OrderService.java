@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class OrderService {
 
-    private InventoryClient inventoryClient;
-    private PaymentClient paymentClient;
+    private final InventoryClient inventoryClient;
+    private final PaymentClient paymentClient;
 
     public OrderService(InventoryClient inventoryClient, PaymentClient paymentClient) {
         this.inventoryClient = inventoryClient;
