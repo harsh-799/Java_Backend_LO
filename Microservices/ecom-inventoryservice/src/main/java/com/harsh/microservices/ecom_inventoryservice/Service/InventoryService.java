@@ -6,8 +6,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class InventoryService {
 
-    public InventoryCheckResponse inventoryStock(int productId) {
+    public InventoryCheckResponse inventoryStock(int productId) throws InterruptedException {
         InventoryCheckResponse resp = new InventoryCheckResponse();
+        Thread.sleep(10000);
         if (productId > 0 && productId < 5) {
             resp.setProductId(5);
             resp.setAvailable(true);

@@ -20,7 +20,7 @@ public class InventoryController {
     }
 
     @GetMapping("/check/{productId}")
-    public ResponseEntity<InventoryCheckResponse> checkInventory(@PathVariable int productId) {
+    public ResponseEntity<InventoryCheckResponse> checkInventory(@PathVariable int productId) throws InterruptedException {
         InventoryCheckResponse resp = inventoryService.inventoryStock(productId);
         return ResponseEntity.status(HttpStatus.OK).body(resp);
     }
