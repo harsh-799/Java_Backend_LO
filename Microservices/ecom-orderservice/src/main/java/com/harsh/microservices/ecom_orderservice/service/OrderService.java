@@ -8,6 +8,7 @@ import com.harsh.microservices.ecom_orderservice.dto.PaymentRequest;
 import com.harsh.microservices.ecom_orderservice.dto.PaymentResponse;
 import com.harsh.microservices.ecom_orderservice.exception.InventoryServiceUnavailableException;
 import com.harsh.microservices.ecom_orderservice.exception.PaymentServiceUnavailableException;
+import feign.FeignException;
 import feign.RetryableException;
 import org.springframework.stereotype.Service;
 
@@ -25,11 +26,8 @@ public class OrderService {
     public OrderResponse placeOrder(int id) {
         OrderResponse response = new OrderResponse();
         InventoryCheckResponse resp = null;
-        try {
-            resp = inventoryClient.checkInventory(id);
-        } catch (RetryableException e) {
-            throw new InventoryServiceUnavailableException("Inventory service is currently unavailable.");
-        }
+
+        resp = inventoryClient.checkInventory(id);
 
         if (resp.getAvailable()) {
             PaymentRequest paymentRequest = new PaymentRequest();
