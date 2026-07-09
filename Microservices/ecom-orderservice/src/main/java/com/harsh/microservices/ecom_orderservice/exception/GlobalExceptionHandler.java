@@ -27,4 +27,22 @@ public class GlobalExceptionHandler {
 
         return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body(errorResponses);
     }
+
+    @ExceptionHandler(Inventory401Exception.class)
+    public ResponseEntity<ErrorResponses> handleServiceUnauthorized(Inventory401Exception ex) {
+        ErrorResponses errorResponses = new ErrorResponses();
+        errorResponses.setSuccess(false);
+        errorResponses.setMessage(ex.getMessage());
+
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponses);
+    }
+
+    @ExceptionHandler(Inventory403Exception.class)
+    public ResponseEntity<ErrorResponses> handleServiceForbidden(Inventory403Exception ex) {
+        ErrorResponses errorResponses = new ErrorResponses();
+        errorResponses.setSuccess(false);
+        errorResponses.setMessage(ex.getMessage());
+
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponses);
+    }
 }
