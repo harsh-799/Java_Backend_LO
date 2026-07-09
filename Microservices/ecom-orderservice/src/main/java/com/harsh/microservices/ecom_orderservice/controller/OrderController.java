@@ -23,4 +23,9 @@ public class OrderController {
     public ResponseEntity<OrderResponse> placeTheOrder(@PathVariable int id, @RequestBody OrderRequestDTO amount) {
         return ResponseEntity.status(HttpStatus.OK).body(orderService.placeOrder(id, amount));
     }
+
+    @GetMapping("/test")
+    public String check() {
+        return orderService.test();
+    }
 }

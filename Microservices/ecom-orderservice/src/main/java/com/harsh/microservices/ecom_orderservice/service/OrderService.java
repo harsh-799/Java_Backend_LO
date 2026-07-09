@@ -47,4 +47,8 @@ public class OrderService {
 
         return response;
     }
+
+    public String test() {
+        return inventoryClient.checkToken();
+    }
 }

@@ -12,4 +12,7 @@ public interface InventoryClient {
     @GetMapping("/check/{id}")
     InventoryCheckResponse checkInventory(@PathVariable int id);
 
+    @GetMapping("/token")
+    String checkToken();
+
 }
