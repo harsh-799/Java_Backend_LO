@@ -45,4 +45,22 @@ public class GlobalExceptionHandler {
 
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponses);
     }
+
+    @ExceptionHandler(Payment401Exception.class)
+    public ResponseEntity<ErrorResponses> handlePaymentUnauthorized(Payment401Exception ex) {
+        ErrorResponses errorResponses = new ErrorResponses();
+        errorResponses.setSuccess(false);
+        errorResponses.setMessage(ex.getMessage());
+
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponses);
+    }
+
+    @ExceptionHandler(Payment403Exception.class)
+    public ResponseEntity<ErrorResponses> handlePaymentForbidden(Payment403Exception ex) {
+        ErrorResponses errorResponses = new ErrorResponses();
+        errorResponses.setSuccess(false);
+        errorResponses.setMessage(ex.getMessage());
+
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponses);
+    }
 }

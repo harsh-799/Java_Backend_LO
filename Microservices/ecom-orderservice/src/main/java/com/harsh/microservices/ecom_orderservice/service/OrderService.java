@@ -2,10 +2,7 @@ package com.harsh.microservices.ecom_orderservice.service;
 
 import com.harsh.microservices.ecom_orderservice.client.InventoryClient;
 import com.harsh.microservices.ecom_orderservice.client.PaymentClient;
-import com.harsh.microservices.ecom_orderservice.dto.InventoryCheckResponse;
-import com.harsh.microservices.ecom_orderservice.dto.OrderResponse;
-import com.harsh.microservices.ecom_orderservice.dto.PaymentRequest;
-import com.harsh.microservices.ecom_orderservice.dto.PaymentResponse;
+import com.harsh.microservices.ecom_orderservice.dto.*;
 import com.harsh.microservices.ecom_orderservice.exception.InventoryServiceUnavailableException;
 import com.harsh.microservices.ecom_orderservice.exception.PaymentServiceUnavailableException;
 import feign.FeignException;
@@ -23,7 +20,7 @@ public class OrderService {
         this.paymentClient = paymentClient;
     }
 
-    public OrderResponse placeOrder(int id) {
+    public OrderResponse placeOrder(int id, OrderRequestDTO request) {
         OrderResponse response = new OrderResponse();
         InventoryCheckResponse resp = null;
 
@@ -31,7 +28,7 @@ public class OrderService {
 
         if (resp.getAvailable()) {
             PaymentRequest paymentRequest = new PaymentRequest();
-            paymentRequest.setAmount(1500);
+            paymentRequest.setAmount(request.getAmount());
             PaymentResponse paymentResponse = null;
             try {
                 paymentResponse = paymentClient.beginPayment(paymentRequest);
